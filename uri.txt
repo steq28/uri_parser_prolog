@@ -1,0 +1,7 @@
+uri_parse("ftp://ftp.is.co.za/rfc/rfc1808.txt",X), uri_display(X).
+uri_parse("http://www.ietf.org/rfc/rfc2396.txt",X), uri_display(X).
+uri_parse("ldap://[2001:db8::7]/c=GB?objectClass?one",X), uri_display(X).
+uri_parse("news:comp.infosystems.www.servers.unix",X), uri_display(X).
+uri_parse("tel:+1-816-555-1212",X), uri_display(X).
+uri_parse("telnet://192.0.2.16:80/",X), uri_display(X).
+uri_parse("urn:oasis:names:specification:docbook:dtd:xml:4.1.2",X), uri_display(X).

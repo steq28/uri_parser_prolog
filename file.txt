@@ -1,0 +1,9 @@
+URI Display: http://www.ietf.org/rfc2396.txt
+Scheme   ==> http
+Userinfo ==> []
+Host     ==> www.ietf.org
+Port     ==> 80
+Path     ==> /rfc2396.txt
+Query    ==> []
+Fragment ==> []
+
