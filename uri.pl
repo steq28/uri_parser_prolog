@@ -65,7 +65,7 @@ uri(uri(Atom, Userinfo, Host, Port, Path, Query, Fragment)) -->
 /****** GENERAL SYNTAX *****/
 uri(uri(Scheme, Userinfo, Host, Port, Path, Query, Fragment)) -->
     scheme(Scheme),
-    [:],
+    ":",
     authorithy(Userinfo,Host,Port),
     opzionale(Path, Query, Fragment), !.
 
@@ -82,10 +82,11 @@ opzionaleZos(Path, Query, Fragment) -->
     [/], pathZos(Path), query(Query), fragment(Fragment).
 
 opzionaleZos(Path, [], [])--> [/], pathZos(Path).
+%opzionaleZos([], [], [])--> [].
 
 pathZos(Str) -->
     id44(Str44), "(", id8(Str8) , ")",
-    { atomic_list_concat([/, Str44, /, Str8],Str)}.
+    { atomic_list_concat([Str44, '(', Str8, ')'],Str)}.
 
 pathZos(Str) --> id44(Str).
 pathZos([]) --> [].
@@ -129,7 +130,7 @@ mailto([], []) --> [], [].
 authorithy(Userinfo,Host,Port) -->
     "//", bloccoUser(Userinfo), host(Host), port(Port).
 
-authorithy([],[],[])--> [].
+authorithy([],[],80)--> [].
 
 /****** USER INFO *****/
 bloccoUser(Stringa) --> userinfo(Stringa), [@].
@@ -210,13 +211,13 @@ percorso(Percorso) -->
     identificatore(Lista), [/], percorso(Str),
     {
         atom_codes(Stringa, Lista),
-        atomic_list_concat([/, Stringa, Str], Percorso)
+        atomic_list_concat([Stringa, /, Str], Percorso)
     }.
 percorso(Percorso) -->
     identificatore(Lista),
     {
         atom_codes(Str, Lista),
-        atomic_list_concat([/, Str], Percorso)
+        atomic_list_concat([Str], Percorso)
     }.
 
 /****** QUERY *****/
